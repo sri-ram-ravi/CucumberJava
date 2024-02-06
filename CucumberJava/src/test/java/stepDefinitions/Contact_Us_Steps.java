@@ -4,14 +4,21 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import java.time.Duration;
 
 public class Contact_Us_Steps {
 
     private WebDriver driver;
+    private WebDriverWait wait;
 
     @Before
     public void setUpDriver(){
@@ -19,6 +26,8 @@ public class Contact_Us_Steps {
         ChromeOptions chromeOptions=new ChromeOptions();
         chromeOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
         driver=new ChromeDriver(chromeOptions);
+        driver.manage().window().maximize();
+        wait=new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     @After
@@ -28,30 +37,31 @@ public class Contact_Us_Steps {
 
     @Given("Go to the webdriver university contact us page")
     public void go_to_the_webdriver_university_contact_us_page() {
-        System.out.println("step 1-ku");
+        driver.get("https://www.webdriveruniversity.com/Contact-Us/contactus.html");
     }
-    @When("I enter first name")
-    public void i_enter_first_name() {
-        System.out.println("step 2");
+    @When("I enter first name {string}")
+    public void i_enter_first_name(String firstname) {
+        driver.findElement(By.xpath("//input[@name='first_name']")).sendKeys(firstname);
     }
-    @When("I enter last name")
-    public void i_enter_last_name() {
-        System.out.println("step 3");
+    @When("I enter last name {string}")
+    public void i_enter_last_name(String lastname) {
+        driver.findElement(By.xpath("//input[@name='last_name']")).sendKeys(lastname);
     }
-    @When("I enter email address")
-    public void i_enter_email_address() {
-        System.out.println("step 4");
+    @When("I enter email address {string}")
+    public void i_enter_email_address(String email) {
+        driver.findElement(By.xpath("//input[@name='email']")).sendKeys(email);
     }
-    @When("I enter comment")
-    public void i_enter_comment() {
-        System.out.println("step 5");
+    @When("I enter comment {string}")
+    public void i_enter_comment(String comment) {
+        driver.findElement(By.xpath("//textarea[@name='message']")).sendKeys(comment);
     }
     @When("I click submit")
     public void i_click_submit() {
-        System.out.println("step 6");
+        driver.findElement(By.xpath("//input[@value='SUBMIT']")).click();
     }
     @Then("I should see {string}")
-    public void i_should_see(String string) {
-        System.out.println("step 7");
+    public void i_should_see(String expectedThankYouMessage) {
+        String thankYouMessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='contact_reply']/h1"))).getText();
+        Assert.assertEquals(thankYouMessage,expectedThankYouMessage);
     }
 }
