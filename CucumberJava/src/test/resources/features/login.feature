@@ -67,6 +67,7 @@ Feature: Login
 #    Then alert should shown with "validation failed" message
 #    And username and password field should be empty once the alert popup closed
 #
+#  @smoke
 #  Scenario: Attempt login without username and with password
 #    Given Login page url
 #    And I enter password  "webdriver1234"

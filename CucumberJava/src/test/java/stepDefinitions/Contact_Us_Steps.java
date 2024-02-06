@@ -1,39 +1,21 @@
 package stepDefinitions;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import stepDefinitions.Base.Hooks;
 
 import java.time.Duration;
 
+import static driver.DriverFactory.getDriver;
+
 public class Contact_Us_Steps {
 
-    private WebDriver driver;
-    private WebDriverWait wait;
-
-    @Before("@contact_us")
-    public void setUpDriver(){
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions chromeOptions=new ChromeOptions();
-        chromeOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
-        driver=new ChromeDriver(chromeOptions);
-        driver.manage().window().maximize();
-        wait=new WebDriverWait(driver, Duration.ofSeconds(10));
-    }
-
-    @After("@contact_us")
-    public void tearDownDriver(){
-        driver.quit();
-    }
+    private WebDriver driver=getDriver();
+    WebDriverWait wait =wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
     @Given("Go to the webdriver university contact us page")
     public void go_to_the_webdriver_university_contact_us_page() {
