@@ -47,7 +47,7 @@ public class Contact_Us_Steps {
     public void i_enter_last_name(String lastname) {
         driver.findElement(By.xpath("//input[@name='last_name']")).sendKeys(lastname);
     }
-    @When("I enter {int} email address {string}")
+    @When("I enter email address {string}")
     public void i_enter_email_address(String email) {
         driver.findElement(By.xpath("//input[@name='email']")).sendKeys(email);
     }

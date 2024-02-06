@@ -1,3 +1,5 @@
+@contact_us
+
 Feature: Contact Us
   Scenario: Validate Successful Submission
     Given Go to the webdriver university contact us page
@@ -12,7 +14,7 @@ Feature: Contact Us
     Given Go to the webdriver university contact us page
     When I enter first name "sriram"
     And I enter last name "ravi"
-    And I enter 55 email address "sri@yopmail.com"
+    And I enter email address "sri@yopmail.com"
     And I enter comment "please do contact"
     When I click reset
     Then first name should be empty
