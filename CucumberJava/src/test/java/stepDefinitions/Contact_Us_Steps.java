@@ -20,7 +20,7 @@ public class Contact_Us_Steps {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    @Before
+    @Before("@contact_us")
     public void setUpDriver(){
         WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions=new ChromeOptions();
@@ -30,7 +30,7 @@ public class Contact_Us_Steps {
         wait=new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    @After
+    @After("@contact_us")
     public void tearDownDriver(){
         driver.quit();
     }

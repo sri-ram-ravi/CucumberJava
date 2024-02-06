@@ -19,16 +19,17 @@ public class Login_Steps {
     private WebDriver webDriver;
     private WebDriverWait wait;
     Alert alert;
-    @Before
+    @Before("@login")
     public void setUpDriver(){
         WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions=new ChromeOptions();
+        chromeOptions.addArguments("--headless");
         chromeOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
         webDriver=new ChromeDriver();
         webDriver.manage().window().maximize();
         wait=new WebDriverWait(webDriver, Duration.ofSeconds(20));
     }
-    @After
+    @After("@login")
     public void tearDownDriver(){
         webDriver.quit();
     }
