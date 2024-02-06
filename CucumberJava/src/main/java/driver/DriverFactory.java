@@ -14,6 +14,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static driver.PropertiesReader.ReadProperties;
+
 public class DriverFactory {
     static WebDriver driver = null;
     private static WebDriverWait wait;
@@ -27,7 +29,7 @@ public class DriverFactory {
     }
 
     private static WebDriver createDriver() {
-        String browserType = "chrome";
+        String browserType = ReadProperties().getProperty("browser");
 
         switch (browserType) {
             case "chrome" -> {
