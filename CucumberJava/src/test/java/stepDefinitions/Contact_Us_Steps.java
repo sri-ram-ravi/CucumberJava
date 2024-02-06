@@ -4,8 +4,10 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class Contact_Us_Steps {
 
@@ -14,7 +16,9 @@ public class Contact_Us_Steps {
     @Before
     public void setUpDriver(){
         WebDriverManager.chromedriver().setup();
-        driver=new ChromeDriver();
+        ChromeOptions chromeOptions=new ChromeOptions();
+        chromeOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
+        driver=new ChromeDriver(chromeOptions);
     }
 
     @After
