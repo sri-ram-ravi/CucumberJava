@@ -47,7 +47,7 @@ public class Contact_Us_Steps {
     public void i_enter_last_name(String lastname) {
         driver.findElement(By.xpath("//input[@name='last_name']")).sendKeys(lastname);
     }
-    @When("I enter email address {string}")
+    @When("I enter {int} email address {string}")
     public void i_enter_email_address(String email) {
         driver.findElement(By.xpath("//input[@name='email']")).sendKeys(email);
     }
@@ -59,9 +59,37 @@ public class Contact_Us_Steps {
     public void i_click_submit() {
         driver.findElement(By.xpath("//input[@value='SUBMIT']")).click();
     }
+
     @Then("I should see {string}")
     public void i_should_see(String expectedThankYouMessage) {
         String thankYouMessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='contact_reply']/h1"))).getText();
         Assert.assertEquals(thankYouMessage,expectedThankYouMessage);
     }
+    /* Reset Feature*/
+    @When("I click reset")
+    public void i_click_reset() {
+            driver.findElement(By.xpath("//input[@value='RESET']")).click();
+    }
+
+    @Then("first name should be empty")
+    public void first_name_should_be_empty() {
+        String emptyFirstName=driver.findElement(By.xpath("//input[@name='first_name']")).getAttribute("value");
+        Assert.assertEquals(emptyFirstName,"");
+    }
+    @Then("last name should be empty")
+    public void last_name_should_be_empty() {
+        String emptyLastName=driver.findElement(By.xpath("//input[@name='last_name']")).getAttribute("value");
+        Assert.assertEquals(emptyLastName,"");
+    }
+    @Then("email should be empty")
+    public void email_should_be_empty() {
+        String emptyEmail=driver.findElement(By.xpath("//input[@name='email']")).getAttribute("value");
+        Assert.assertEquals(emptyEmail,"");
+    }
+    @Then("comment should be empty")
+    public void comment_should_be_empty() {
+       String emptyMessage=driver.findElement(By.xpath("//textarea[@name='message']")).getAttribute("value");
+       Assert.assertEquals(emptyMessage,"");
+    }
+
 }
