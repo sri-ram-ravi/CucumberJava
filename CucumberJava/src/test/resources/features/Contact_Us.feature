@@ -1,4 +1,4 @@
-@contact_us
+@contact_us @smoke
 
 Feature: Contact Us
   Scenario: Validate Successful Submission

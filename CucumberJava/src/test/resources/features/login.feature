@@ -1,4 +1,4 @@
-@login
+@login @smoke
 Feature: Login
 
   Background:
