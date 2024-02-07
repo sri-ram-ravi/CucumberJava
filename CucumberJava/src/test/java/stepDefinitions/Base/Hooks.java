@@ -22,21 +22,16 @@ public class Hooks {
         getDriver();
     }
 
-//    @AfterStep
-//    public void takeScreenShotAfterStepFail(Scenario scenario){
-//        if(scenario.isFailed()){
-//            String timestamp=new Timestamp(System.currentTimeMillis()).toString();
-//            byte[] screenshot=((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES);
-//            scenario.attach(screenshot,"image/png",timestamp);
-//        }
-//    }
-
-    @After
-    public void tearDownDriver(Scenario scenario) {
+    @AfterStep
+    public void takeScreenShotAfterStepFail(Scenario scenario){
         if(scenario.isFailed()) {
             final byte[] screenshot = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", scenario.getName());
         }
+    }
+
+    @After
+    public void tearDownDriver(Scenario scenario) {
         cleanUpDriver();
     }
 }
