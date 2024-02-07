@@ -10,6 +10,11 @@ public class Login_Page {
     public By username=By.xpath("//input[@id='text']");
     public By password=By.xpath("//input[@id='password']");
     public By login=By.xpath("//button[@id='login-button']");
+
+    public Login_Page(WebDriver driver) {
+        this.driver=driver;
+    }
+
     public void setUsername(String UserName){
         driver.findElement(username).sendKeys(UserName);
     }

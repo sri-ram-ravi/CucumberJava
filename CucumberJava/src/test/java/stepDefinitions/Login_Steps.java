@@ -19,7 +19,7 @@ public class Login_Steps{
     private WebDriver driver=getDriver();
     WebDriverWait wait =wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
-    Login_Page loginPage=new Login_Page();
+    Login_Page loginPage=new Login_Page(driver);
 
     @Given("Login page url")
     public void login_page_url() {
