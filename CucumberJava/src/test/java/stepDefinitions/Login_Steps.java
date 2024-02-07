@@ -13,17 +13,18 @@ import stepDefinitions.Base.Hooks;
 
 import java.time.Duration;
 
+import static driver.Constraints.*;
 import static driver.DriverFactory.getDriver;
 
 public class Login_Steps{
     private WebDriver driver=getDriver();
-    WebDriverWait wait =wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+    WebDriverWait wait =wait = new WebDriverWait(driver, Duration.ofSeconds(DEFAULT_EXPLICIT_TIMEOUT));
 
     Login_Page loginPage=new Login_Page(driver);
 
     @Given("Login page url")
     public void login_page_url() {
-        driver.get("https://www.webdriveruniversity.com/Login-Portal/index.html");
+        driver.get(BASE_URL+"/Login-Portal/index.html");
     }
 
     @When("I enter username {string}")

@@ -11,18 +11,19 @@ import stepDefinitions.Base.Hooks;
 
 import java.time.Duration;
 
+import static driver.Constraints.*;
 import static driver.DriverFactory.getDriver;
 
 public class Contact_Us_Steps {
 
     private WebDriver driver=getDriver();
-    WebDriverWait wait =wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+    WebDriverWait wait =wait = new WebDriverWait(driver, Duration.ofSeconds(DEFAULT_EXPLICIT_TIMEOUT));
 
    Contact_Us_page contactUsPage=new Contact_Us_page(driver);
 
     @Given("Go to the webdriver university contact us page")
     public void go_to_the_webdriver_university_contact_us_page() {
-        driver.get("https://www.webdriveruniversity.com/Contact-Us/contactus.html");
+        driver.get(BASE_URL+"/Contact-Us/contactus.html");
     }
     @When("I enter first name {string}")
     public void i_enter_first_name(String firstname) {
