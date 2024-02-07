@@ -1,8 +1,16 @@
 package stepDefinitions.Base;
 
 import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.devtools.v121.runtime.model.Timestamp;
 
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static driver.DriverFactory.cleanUpDriver;
 import static driver.DriverFactory.getDriver;
@@ -14,8 +22,21 @@ public class Hooks {
         getDriver();
     }
 
+//    @AfterStep
+//    public void takeScreenShotAfterStepFail(Scenario scenario){
+//        if(scenario.isFailed()){
+//            String timestamp=new Timestamp(System.currentTimeMillis()).toString();
+//            byte[] screenshot=((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES);
+//            scenario.attach(screenshot,"image/png",timestamp);
+//        }
+//    }
+
     @After
-    public void tearDownDriver() {
+    public void tearDownDriver(Scenario scenario) {
+        if(scenario.isFailed()) {
+            final byte[] screenshot = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshot, "image/png", scenario.getName());
+        }
         cleanUpDriver();
     }
 }

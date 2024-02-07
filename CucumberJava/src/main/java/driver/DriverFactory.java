@@ -35,7 +35,7 @@ public class DriverFactory {
             case "chrome" -> {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.addArguments("--start-headless");
+                chromeOptions.addArguments("--headless");
                 chromeOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
                 driver = new ChromeDriver(chromeOptions);
                 break;
@@ -43,7 +43,7 @@ public class DriverFactory {
             case "firefox" -> {
                 WebDriverManager.chromedriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxOptions.addArguments("--start-headless");
+                firefoxOptions.addArguments("--headless");
                 firefoxOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
                 driver = new FirefoxDriver(firefoxOptions);
                 driver.manage().window().maximize();
@@ -53,7 +53,7 @@ public class DriverFactory {
             case "edge" -> {
                 WebDriverManager.chromedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
-                edgeOptions.addArguments("--start-headless");
+                edgeOptions.addArguments("--headless");
                 edgeOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
                 driver = new EdgeDriver(edgeOptions);
                 driver.manage().window().maximize();

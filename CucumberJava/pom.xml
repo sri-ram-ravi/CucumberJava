@@ -6,6 +6,7 @@
   <version>1.0-SNAPSHOT</version>
   <name>Archetype - CucumberJava</name>
   <url>http://maven.apache.org</url>
+
   <dependencies>
     <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
     <dependency>

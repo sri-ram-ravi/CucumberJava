@@ -19,7 +19,7 @@ Feature: Login
       | webdrivers | webdriver1234 | validation failed    |
       |            |               | validation failed    |
       | webdrivers |               | validation failed    |
-      |            | webdriver123  | validation failed    |
+      | webdriver  | webdriver123  | validation failed    |
 
 #  Scenario: Attempt login with valid username and valid password credentials
 #    Given Login page url
